@@ -1,12 +1,4 @@
-/*import {ComponentFactory} from './src/elm/elm.js';
-import {WindowBaseHandler} from './src/gui/gui.js';
+import {App} from './src/App.js';
 
-const componentFactory = new ComponentFactory();
-const windowBaseHandler = new WindowBaseHandler(componentFactory);
-window.windowBaseHandler = windowBaseHandler;*/
-
-/**
- * 
- * 
- * 
- */
+const app = new App();
+app.init();
