@@ -19,11 +19,36 @@ body {
 }
 
 .window.active {
-    display: block;        /* visible quand actif */
+    display: flex;        /* visible quand actif */
 }
 
 .windowStart {
     width: 100%;
     height: 100%;
     background-color: black;
+    flex-direction: column;     /* empile verticalement */
+    justify-content: center;    /* centre verticalement */
+    align-items: center;        /* centre horizontalement */
+    gap: 2%
+}
+
+.windowParams {
+    width: 100%;
+    height: 100%;
+    background-color: red;
+}
+
+.button_start {
+    width: 200px;
+    background-color: black;
+    color: white;
+    border: 3px solid white;
+    border-radius: 10px;   /* arrondi */
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.button_start:hover {
+  background-color: rgb(129, 128, 128);
 }

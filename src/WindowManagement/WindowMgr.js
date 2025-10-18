@@ -1,26 +1,37 @@
 import {WindowStart} from './Windows/WindowStart.js';
+import {WindowParams} from './Windows/WindowParams.js';
+import {WindowEnum} from './Windows/WindowEnum.js'
 
 export class WindowMgr {
 
     constructor(){
         this.currentActiveWindow = null;
 
-        this.windowStart = null;
+        this.windowMap = new Map();
     }
 
     init(){
         // Créer toutes les window (active = false par défaut)
-        this.windowStart = new WindowStart(this);
+        this.windowMap.set(WindowEnum.START, new WindowStart(this));
+        this.windowMap.set(WindowEnum.PARAMETERS, new WindowParams(this));
 
         // Activer la window de départ
-        this.currentActiveWindow = this.windowStart;
-        this.currentActiveWindow.setActive(true);
+        this.activateWindowByName(WindowEnum.START);
     } // init()
 
-    activate(window){
-        this.currentActiveWindow.setActive(false);
+    activateWindow(window){
+        if (this.currentActiveWindow !== null)
+            this.currentActiveWindow.setActive(false);
+
         this.currentActiveWindow = window;
-        this.currentActiveWindow.setActive(true);
-    } // activate()
+
+        if (this.currentActiveWindow !== null)
+            this.currentActiveWindow.setActive(true);
+    } // activateWindow()
+
+    activateWindowByName(windowName){
+        if (this.windowMap.has(windowName))
+            this.activateWindow(this.windowMap.get(windowName));
+    } // activateWindowByName()
 
 }; // class WindowMgr
